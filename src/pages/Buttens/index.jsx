@@ -19,7 +19,16 @@ export default function Buttens() {
 
   const handleDoneAll = async () => {
     try {
-      await axios.put('http://localhost:2555/todo', { isDone: true });      
+      await axios.put('http://localhost:2555/todo', { isDone: true })
+        .then(() => {
+          setTasks((prevTasks) => prevTasks.map((task) => {
+            if (task.isDone === false) {
+              task.isDone = true;
+            }
+            return task;
+          }
+          ))
+        })
     } catch (error) {
       console.log(error);
     }
@@ -27,7 +36,16 @@ export default function Buttens() {
 
   const handleDidntDoAll = async () => {
     try {
-      await axios.put('http://localhost:2555/todo', { isDone: false });
+      await axios.put('http://localhost:2555/todo', { isDone: false })
+      .then(() => {
+        setTasks((prevTasks) => prevTasks.map((task) => {
+          if (task.isDone === true) {
+            task.isDone = false;
+          }
+          return task;
+        }
+        ))
+      })
     
     } catch (error) {
       console.log(error);
