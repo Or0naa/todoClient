@@ -7,8 +7,6 @@ export default function App() {
   const [user, setUser] = useState()
   const [tasks, setTasks] = useState([]);
 
-
-
   return (
     
     <>
