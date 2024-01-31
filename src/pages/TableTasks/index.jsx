@@ -33,7 +33,7 @@ const handleDelete = async (task) => {
 
   try {
     await axios.delete(`http://localhost:2555/todo/${id}`);
-    // Update state only after successful deletion
+  
     setTasks((prevTasks) => prevTasks.filter((t) => t._id !== id));
   } catch (error) {
     console.log(error);
