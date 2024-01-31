@@ -9,7 +9,7 @@ export default function Buttens() {
   const { tasks, setTasks } = useContext(DataContext);
 
   const handleDeleteAll = async () => {
-   try {
+    try {
       await axios.delete('http://localhost:2555/todo');
       setTasks([]);
     } catch (error) {
@@ -18,21 +18,22 @@ export default function Buttens() {
   };
 
   const handleDoneAll = async () => {
-try {
-  await axios.put('http://localhost:2555/todo');
-    setTasks((prevTasks) => prevTasks.map((t) => {
-      t.done = true;
-      return t;
-    }));
-  } catch (error) {
-    console.log(error);
-}
+    try {
+      await axios.put('http://localhost:2555/todo', { isDone: true });      
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleDidntDoAll = () => {
-    console.log("didn't do all");
-    // Implement logic for marking all tasks as not done
+  const handleDidntDoAll = async () => {
+    try {
+      await axios.put('http://localhost:2555/todo', { isDone: false });
+    
+    } catch (error) {
+      console.log(error);
+    }
   };
+
 
   return (
     <div className={styles.buttens}>

@@ -18,7 +18,7 @@ export default function TableTasks() {
     }
   }
   fetchData()
-}, [tasks])
+}, [])
 
 
 const handleDone = async (e) => {
@@ -36,7 +36,9 @@ const handleDone = async (e) => {
  } catch (error) {
    console.log(error);
  }
-};
+}
+
+console.log("object")
 
 const handleDelete = async (task) => {
   const id = task._id;
@@ -81,7 +83,7 @@ return (
       <tbody>
         {tasks.map((task, index) => (
           <tr key={index}>
-            <td onClick={()=>handleDone(task)}><input type='checkbox' /></td>
+            <td onClick={()=>handleDone(task)}><input type='checkbox' checked={task.isDone} /></td>
             <td className={task.isDone ? styles['taskDone'] : ''} >{task.name}</td>
             <td className={task.isDone ? styles['taskDone'] : ''}>{calculateTime(task.date, task.timeForFinish)} hours</td>
 

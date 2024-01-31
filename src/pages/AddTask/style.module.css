@@ -5,3 +5,13 @@ flex-direction: row;
 justify-content: space-between;
 margin: 20px ;
 }
+
+.inputs{
+    border-radius: 20%;
+    cursor: pointer;
+    border: 0cap;
+    padding: 10px;
+    color: rgb(182, 56, 220);
+    border-radius: 5px;
+   
+}
