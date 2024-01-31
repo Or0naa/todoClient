@@ -3,11 +3,12 @@ import styles from './style.module.css';
 import { FaDog } from 'react-icons/fa';
 import axios from 'axios';
 import DataContext from '../../context/DataContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function TableTasks() {
   const [isDone, setIsDone] = useState(false);
   const {tasks, setTasks} = useContext(DataContext)
-
+const nav = useNavigate()
  useEffect (() => {
   const fetchData = async () => {
     try {
@@ -67,7 +68,13 @@ function calculateTime(startTime, endTime) {
   }
 }
 
+const handleNavigate = async (task) => {
+  console.log("task",task)
+  nav('/updateTask/' + task._id, {state: task});
 
+  }
+  
+console.log("tasks",tasks)
 
 return (
   <div>
@@ -83,8 +90,8 @@ return (
       <tbody>
         {tasks.map((task, index) => (
           <tr key={index}>
-            <td onClick={()=>handleDone(task)}><input type='checkbox' checked={task.isDone} /></td>
-            <td className={task.isDone ? styles['taskDone'] : ''} >{task.name}</td>
+            <td onClick={()=>handleDone(task)}><input type='checkbox' checked={task.isDone}/></td>
+            <td className={task.isDone ? styles['taskDone'] : ''} onClick={()=>handleNavigate(task)} >{task.name}</td>
             <td className={task.isDone ? styles['taskDone'] : ''}>{calculateTime(task.date, task.timeForFinish)} hours</td>
 
             <td onClick={() => handleDelete(task)}><FaDog /></td>
