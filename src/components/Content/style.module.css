@@ -1,0 +1,10 @@
+.content{
+    width: 60vw;
+    height: 60vh;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px rgba(1, 1, 1, 1);
+    background-color: #8a63d2;
+    color: black;
+}
