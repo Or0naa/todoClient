@@ -23,7 +23,7 @@ export default function  AddTask() {
       })
   }
   return (
-    <div>
+    <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>  
       <input type="text" placeholder="Add task" name="name" />
       <input type='date' name="date" />

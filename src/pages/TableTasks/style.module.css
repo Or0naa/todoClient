@@ -1,8 +1,9 @@
 /* style.module.css */
 .table {
-    width: 100%;
+    width: 92%;
     border-collapse: collapse;
-    margin-top: 20px; /* רווח מלמעלה */
+    margin: 20px; /* רווח מלמעלה */
+    ;
   }
   
   .table th, .table td {

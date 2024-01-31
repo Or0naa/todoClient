@@ -5,7 +5,6 @@ import axios from 'axios';
 import DataContext from '../../context/DataContext';
 
 export default function TableTasks() {
-  const [selectedTasks, setSelectedTasks] = useState([]);
   const [isDone, setIsDone] = useState(false);
   const {tasks, setTasks} = useContext(DataContext)
 
@@ -22,10 +21,21 @@ export default function TableTasks() {
 }, [tasks])
 
 
-const handleDone = () => {
-  const isChecked = document.querySelector('input[type="checkbox"]').checked;
-  if (isChecked) setIsDone(true);
-  else setIsDone(false);
+const handleDone = async (e) => {
+ const id = e._id
+ const updateDone = !e.isDone
+ try{
+  await axios.put(`http://localhost:2555/todo/${id}`, { isDone: updateDone })
+   setTasks((prevTasks) => prevTasks.map((task) => {
+     if (task._id === id) {
+       task.isDone = !task.isDone;
+     }
+     return task;
+   }
+   ))
+ } catch (error) {
+   console.log(error);
+ }
 };
 
 const handleDelete = async (task) => {
@@ -39,6 +49,23 @@ const handleDelete = async (task) => {
     console.log(error);
   }
 };
+function calculateTime(startTime, endTime) {
+  const currentDate = new Date();
+  const startDate = new Date(startTime);
+  const endDate = new Date(endTime);
+
+  // וודא שהתאריך הנוכחי נמצא בין תאריך ההתחלה לתאריך הסיום
+  if (currentDate >= startDate && currentDate <= endDate) {
+    const difference = endDate - currentDate;
+    const hours = Math.floor(difference / (1000 * 60 * 60));
+    return hours;
+  } else {
+    // המשימה לא בתחום תאריכים המתאימים לחישוב
+    return 0;
+  }
+}
+
+
 
 return (
   <div>
@@ -54,9 +81,10 @@ return (
       <tbody>
         {tasks.map((task, index) => (
           <tr key={index}>
-            <td onClick={handleDone}><input type='checkbox' /></td>
-            <td className={isDone ? styles['taskDone'] : ''} >{task.name}</td>
-            <td className={isDone ? styles['taskDone'] : ''} >{task.timeToFinish}</td>
+            <td onClick={()=>handleDone(task)}><input type='checkbox' /></td>
+            <td className={task.isDone ? styles['taskDone'] : ''} >{task.name}</td>
+            <td className={task.isDone ? styles['taskDone'] : ''}>{calculateTime(task.date, task.timeForFinish)} hours</td>
+
             <td onClick={() => handleDelete(task)}><FaDog /></td>
           </tr>
         ))}
