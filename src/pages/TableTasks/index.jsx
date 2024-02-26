@@ -78,7 +78,7 @@ export default function TableTasks() {
 
   return (
     <div>
-      {tasks ? 
+      {tasks.langht != 0 ? 
       <table className={styles.table}>
         <thead>
           <tr>
@@ -102,6 +102,7 @@ export default function TableTasks() {
         </table> : <div>
           <img src="https://media.giphy.com/media/3y0oCOkdKKRi0/giphy.gif?cid=ecf05e47fpceqyoemzqotmx9ocamj80czmvh1ufoccpjqbd2&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="loading" />
           </div>}
+
     </div>
   );
 }
