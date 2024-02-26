@@ -1,17 +1,32 @@
-.form{
-    width: 92%;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-margin: 20px ;
+/* סגנון עבור טופס */
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* שינוי לכיוון אנכי במקום אופקי */
+    align-items: center; /* מיקוד אופקי של הפריטים בטופס */
+    margin: 20px;
 }
 
-.inputs{
-    border-radius: 20%;
-    cursor: pointer;
-    border: 0cap;
+/* סגנונות עבור כל קלט בטופס */
+.inputs {
+    width: 100%;
+    box-sizing: border-box; /* כדי שהרוחב יכלל את padding ו-border */
+    margin-bottom: 10px;
     padding: 10px;
-    color: rgb(182, 56, 220);
+    border: 1px solid #b838dc; /* גבול */
     border-radius: 5px;
-   
+    color: rgb(182, 56, 220);
+    cursor: pointer;
+}
+
+/* סגנונות נוספים למסך קטן */
+@media (max-width: 600px) {
+    .form {
+        margin: 10px;
+    }
+
+    .inputs {
+        padding: 8px;
+        font-size: 14px;
+    }
 }

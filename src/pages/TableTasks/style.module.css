@@ -1,38 +1,45 @@
 /* style.module.css */
 .table {
-    width: 92%;
-    border-collapse: collapse;
-    margin: 20px; /* רווח מלמעלה */
-    ;
-  }
-  
-  .table th, .table td {
-    /* border: 1px solid #6a1b9a; */
-     /* גבולות סולידיים */
-    padding: 8px; /* רווח פנימי בתאים */
-    text-align: left; /* יישור טקסט לשמאל */
-  }
-  
-  .table th {
-    background-color: #6a1b9a; /* רקע צבע אפור בתאי כותרת */
-    vertical-align: middle;
-  }
-
-  
-  .table td input[type="checkbox"] {
-    margin-right: 5px; /* רווח מימין לצד ה-checkbox */
-  }
-  .table tr:nth-child(2n) {
-    background-color: #7453b1;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px; /* רווח מלמעלה ומלמטה */
 }
-  
-  /* סגנונות נוספים לסמלים (לדוג', סמל דוגמא - כמו הכלב) */
-  .table td .react-icon {
-    font-size: 20px;
-    color: #3498db; /* צבע כחול לדוגמא */
+
+.table th, .table td {
+  padding: 6px; /* רווח פנימי בתאים */
+  text-align: left; /* יישור טקסט לשמאל */
+}
+
+.table th {
+  background-color: #6a1b9a; /* רקע צבע אפור בתאי כותרת */
+  vertical-align: middle;
+}
+
+.table td input[type="checkbox"] {
+  margin-right: 5px; /* רווח מימין לצד ה-checkbox */
+}
+
+.table tr:nth-child(2n) {
+  background-color: #7453b1;
+}
+
+.table td .react-icon {
+  font-size: 16px;
+  color: #3498db; /* צבע כחול לדוגמא */
+}
+
+.taskDone {
+  text-decoration: line-through;
+}
+
+/* סגנונות נוספים למסך קטן */
+@media (max-width: 600px) {
+  .table th, .table td {
+      padding: 4px;
+      font-size: 12px;
   }
 
-  .taskDone{
-    text-decoration: line-through;
+  .table td .react-icon {
+      font-size: 14px;
   }
-  
+}
