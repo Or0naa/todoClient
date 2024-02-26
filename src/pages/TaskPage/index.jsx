@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from "react-router-dom"
 import styles from './style.module.css'
 import axios from 'axios'
 
@@ -12,10 +12,10 @@ const handleUpdate = async (e) => {
   const name = e.target.name.value
   const timeForFinish = e.target.date.value
   const data = {name, timeForFinish}
-  axios.put(`http://localhost:2555/todo/${task._id}`, data)
+  axios.put(`${server_url}/todo/${task._id}`, data)
  .then(res => {
     console.log(res.data)
-    nav('/')
+    nav(`/`)
   })
  .catch(err => {
     console.log(err)
@@ -25,11 +25,11 @@ const handleUpdate = async (e) => {
 
   return (
     <div>
-      <button onClick={() => nav('/')} className={styles.button}>back</button>
+      <button onClick={() => nav(`/`)} className={styles.button}>back</button>
      <h1>Update Task:</h1> 
      <form onSubmit={handleUpdate}>
     <input type="text" placeholder="Change name" name="name" defaultValue={task.name}/> <br/>
-    <input type='date'placeholder='Change time' name="date" defaultValue={task.timeForFinish}/> <button>Change</button>
+    <input type='date' placeholder='Change time' name="date" defaultValue={task.timeForFinish}/> <button>Change</button>
     </form>
     </div>
   )

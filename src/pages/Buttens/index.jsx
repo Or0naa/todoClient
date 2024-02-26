@@ -6,11 +6,11 @@ import DataContext from '../../context/DataContext';
 
 
 export default function Buttens() {
-  const { tasks, setTasks } = useContext(DataContext);
+  const { tasks, setTasks, server_url } = useContext(DataContext);
 
   const handleDeleteAll = async () => {
     try {
-      await axios.delete('http://localhost:2555/todo');
+      await axios.delete(`${server_url}/todo`);
       setTasks([]);
     } catch (error) {
       console.log(error);
@@ -19,7 +19,7 @@ export default function Buttens() {
 
   const handleDoneAll = async () => {
     try {
-      await axios.put('http://localhost:2555/todo', { isDone: true })
+      await axios.put(`${server_url}/todo`, { isDone: true })
         .then(() => {
           setTasks((prevTasks) => prevTasks.map((task) => {
             if (task.isDone === false) {
@@ -36,7 +36,7 @@ export default function Buttens() {
 
   const handleDidntDoAll = async () => {
     try {
-      await axios.put('http://localhost:2555/todo', { isDone: false })
+      await axios.put(`${server_url}/todo`, { isDone: false })
       .then(() => {
         setTasks((prevTasks) => prevTasks.map((task) => {
           if (task.isDone === true) {
@@ -62,7 +62,7 @@ export default function Buttens() {
         {<FaTasks />} Done All
       </button>
       <button className={styles.b} onClick={handleDidntDoAll}>
-        {<FaSadCry />} Didn't do All
+        {<FaSadCry />} Didn`t do All
       </button>
     </div>
   );

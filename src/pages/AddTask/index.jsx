@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import DataContext from '../../context/DataContext'
 
 export default function  AddTask() {
-  const {tasks, setTasks} = useContext(DataContext)
+  const {tasks, setTasks, server_url} = useContext(DataContext)
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -13,7 +13,7 @@ export default function  AddTask() {
     const timeForFinish = e.target.date.value;
     const data = {name, timeForFinish}
    
-    await axios.post('http://localhost:2555/todo', data)
+    await axios.post(`${server_url}/todo`, data)
     .then(res => {
         console.log(res.data)
         setTasks([...tasks, res.data])

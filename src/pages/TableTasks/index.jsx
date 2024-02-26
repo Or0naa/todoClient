@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 
 export default function TableTasks() {
   const [isDone, setIsDone] = useState(false);
-  const { tasks, setTasks } = useContext(DataContext)
+  const { tasks, setTasks, server_url } = useContext(DataContext)
   const nav = useNavigate()
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('http://localhost:2555/todo');
+        const res = await axios.get(`${server_url}/todo`);
         setTasks(res.data);
       } catch (error) {
         console.log(error);
@@ -26,7 +26,7 @@ export default function TableTasks() {
     const id = e._id
     const updateDone = !e.isDone
     try {
-      await axios.put(`http://localhost:2555/todo/${id}`, { isDone: updateDone })
+      await axios.put(`${server_url}/todo/${id}`, { isDone: updateDone })
       setTasks((prevTasks) => prevTasks.map((task) => {
         if (task._id === id) {
           task.isDone = !task.isDone;
@@ -45,7 +45,7 @@ export default function TableTasks() {
     const id = task._id;
 
     try {
-      await axios.delete(`http://localhost:2555/todo/${id}`);
+      await axios.delete(`${server_url}/todo/${id}`);
 
       setTasks((prevTasks) => prevTasks.filter((t) => t._id !== id));
     } catch (error) {
@@ -70,7 +70,7 @@ export default function TableTasks() {
 
   const handleNavigate = async (task) => {
     console.log("task", task)
-    nav('/updateTask/' + task._id, { state: task });
+    nav(`/updateTask/` + task._id, { state: task });
 
   }
 
@@ -91,8 +91,8 @@ export default function TableTasks() {
           {tasks.map((task, index) => (
             <tr key={index}>
               <td onClick={() => handleDone(task)}><input type='checkbox' checked={task.isDone} /></td>
-              <td className={task.isDone ? styles['taskDone'] : ''} onClick={() => handleNavigate(task)} >{task.name}</td>
-              <td className={task.isDone ? styles['taskDone'] : ''}>{calculateTime(task.date, task.timeForFinish)} hours</td>
+              <td className={task.isDone ? styles[`taskDone`] : ``} onClick={() => handleNavigate(task)} >{task.name}</td>
+              <td className={task.isDone ? styles[`taskDone`] : ``}>{calculateTime(task.date, task.timeForFinish)} hours</td>
 
               <td onClick={() => handleDelete(task)}><FaDog /></td>
             </tr>
