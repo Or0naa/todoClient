@@ -35,3 +35,13 @@ h1, h2, h3 {
   text-transform: capitalize; 
   /* כדי לא להצטרך לעשות בעצמנו אות גדולה בתחילת מילה */
 }
+
+@media (max-width: 600px) {
+  body {
+      margin: 10px;
+  }
+
+  h1, h2, h3 {
+      font-size: 1.5em;
+  }
+}

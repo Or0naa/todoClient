@@ -23,10 +23,16 @@
 @media (max-width: 600px) {
     .form {
         margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .inputs {
         padding: 8px;
         font-size: 14px;
+        margin: 8px;
+        width: 90%;
     }
 }
